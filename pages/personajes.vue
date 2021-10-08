@@ -9,23 +9,14 @@
         class="mb-5"
       />
       
-      <blockquote class="blockquote">
-        &#8220;Lista de Rick and Morty.&#8221;
-
-        <v-card v-for="(personaje, $index) in personajes"
-      :key="$index"
-      v-text="personaje.nombre"
-      >
-      
-      <img :src="imgPersonaje" class="img" alt="imagen">
-      <v-card-text v-text="personaje.nombre">
-          </v-card-text>     
+      <h1>Lista de Rick and Morty</h1>
+      <v-card v-for="(personaje, $index) in personajes"
+          :key="$index"
+          >
+ 
+            <img :src="personaje.imagen" />
+            <h1>{{personaje.nombre}}</h1>
           </v-card>
-
-        <footer>
-          
-        </footer>
-      </blockquote>
     </v-col>
   </v-row>
 </template>
@@ -70,7 +61,8 @@ export default {
     }),
 //    computed: {
 //        imgPersonaje() {
-//            return this.personaje;
+//            return `https://rickandmortyapi.com/api/character/avatar/5.jpeg`;
+//              return this.$state.personajes.imagen;
 //        }
 //    }
 }    
