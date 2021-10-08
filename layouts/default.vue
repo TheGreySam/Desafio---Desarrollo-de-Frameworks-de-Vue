@@ -9,19 +9,18 @@
     >
       <v-list>
         <v-list-item
-          v-for="(personaje, $index) in personajes"
-          :key="$index"
-          
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
           router
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ personaje.id }}</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="personaje.nombre" />
+            <v-list-item-title v-text="item.title" />
           </v-list-item-content>
-          <img :src="personaje.imagen " alt="imagen">
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -51,16 +50,34 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      
+      <v-btn
+        icon
+        @click.stop="rightDrawer = !rightDrawer"
+      >
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
     </v-app-bar>
-    
+    <v-main>
+      <v-container>
+        <Nuxt />
+      </v-container>
+    </v-main>
     <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
       temporary
       fixed
     >
-      
+      <v-list>
+        <v-list-item @click.native="right = !right">
+          <v-list-item-action>
+            <v-icon light>
+              mdi-repeat
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
     <v-footer
       :absolute="!fixed"
@@ -75,63 +92,26 @@
 export default {
   data () {
     return {
-       personajes: [
+      clipped: false,
+      drawer: false,
+      fixed: false,
+      items: [
         {
-        id: 1,
-        nombre: 'Morty',
-        imagen:
-        'https://rickandmortyapi.com/api/character/avatar/2.jpeg'
+          icon: 'mdi-apps',
+          title: 'Welcome',
+          to: '/'
         },
         {
-        'id': 2,
-        'nombre': 'Rick',
-        'imagen':
-        'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
-        },
-        {
-        'id': 3,
-        'nombre': 'Summer',
-        'imagen':
-        'https://rickandmortyapi.com/api/character/avatar/3.jpeg'
-        },
-        {
-        'id': 4,
-        'nombre': 'Beth',
-        'imagen':
-        'https://rickandmortyapi.com/api/character/avatar/4.jpeg'
-        },
-        {
-        'id': 5,
-        'nombre': 'Jerry',
-        'imagen':
-        'https://rickandmortyapi.com/api/character/avatar/5.jpeg'
+          icon: 'mdi-chart-bubble',
+          title: 'Personajes',
+          to: '/personajes'
         }
-        ]
-        
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: 'Vuetify.js'
     }
   }
-//  data () {
-//    return {
-//      clipped: false,
-//      drawer: false,
-//      fixed: false,
-//      items: [
-//        {
-//          icon: 'mdi-apps',
-//          title: 'Welcome',
-//          to: '/'
-//        },
-//        {
-//          icon: 'mdi-chart-bubble',
-//          title: 'Inspire',
-//          to: '/inspire'
-//        }
-//      ],
-//      miniVariant: false,
-//      right: true,
-//      rightDrawer: false,
-//      title: 'Vuetify.js'
-//    }
-//  }
 }
 </script>
