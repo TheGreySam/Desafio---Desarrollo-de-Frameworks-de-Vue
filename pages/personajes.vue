@@ -1,4 +1,44 @@
 <template>
+  <v-container class="" justify="center" align="center">
+      <v-img
+        src="https://cdn11.bigcommerce.com/s-fg272t4iw0/images/stencil/1280x1280/products/7093/7346/C-17141__68476.1557818587.jpg?c=2"
+        max-height="325"
+        contain
+        alt="logo"
+        class="mb-5"
+      />
+      
+      <h1 align="center">Lista de Rick and Morty</h1>
+      <br>
+    <v-row no-gutters
+    class="mb-6 d-flex"
+    justify="center"
+    >
+      <v-col
+        md="auto"
+        class="col-auto d-flex flex-wrap justify-space-around"
+      >
+      
+      
+        <v-card v-for="(personaje, $index) in personajes"
+          :key="$index"
+          
+          class="pa-2"
+          align="center"
+          
+          outlined
+          tile
+          >
+ 
+            <img :src="personaje.imagen" />
+            <h1>{{personaje.nombre}}</h1>
+          </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+<!--template>
+
   <v-row>
     <v-col class="text-center">
       <v-img
@@ -19,7 +59,7 @@
           </v-card>
     </v-col>
   </v-row>
-</template>
+</template-->
 
 <script>
 
